@@ -13,7 +13,7 @@
                 <form [formGroup]="form" (ngSubmit)="registrarse()">
                   <div class="row">
                     <div>
-                      <h2>ESPECIALISTA</h2>
+                      <h2>ADMINISTRADOR</h2>
                     </div>
                     <div class="col-md-6 mb-3">
                       <label for="nombre">Nombre</label>
@@ -52,19 +52,6 @@
                     </ng-container>
                   </div>
                   <div class="row">
-                    <div class="col-md-5 mb-3">
-                      <label>Especialidad</label>
-                      <select class="custom-select d-block w-100" formControlName="especialidad" multiple>
-                        <option *ngFor="let especialidad of especialidades">{{ especialidad.nombre | titlecase}}</option>
-                      </select>
-                    </div>
-                    <div class="col-md-5 mb-3">
-                      <label>Agregar Especialidad Personalizada</label>
-                      <input type="text" class="form-control" formControlName="nuevaEspecialidad">
-                      <ng-container *ngIf="nuevaEspecialidad?.hasError('pattern')">
-                        <small class="text-danger">Sólo debe contener letras en minúsculas</small>
-                      </ng-container>
-                    </div>
                     <div class="col-md-6 mb-3">
                       <label>Fecha de nacimiento</label>
                       <input type="date" class="form-control" id="fechaNacimiento" formControlName="fechaNacimiento">

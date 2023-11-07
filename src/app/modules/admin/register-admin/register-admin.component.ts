@@ -1,4 +1,11 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { DataqueryService } from 'src/app/services/dataquery.service';
+import { StorageService } from 'src/app/services/storage.service';
+import { fechaNacimientoValidator } from 'src/app/validators/fechaNacimiento.validators';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register-admin',
@@ -23,9 +30,7 @@ export class RegisterAdminComponent {
       mail: new FormControl("", [Validators.email, Validators.required]),
       password: new FormControl("", [Validators.minLength(6), Validators.required]),
       fechaNacimiento: new FormControl("", [Validators.required,fechaNacimientoValidator]),
-      especialidad: new FormControl(""),
       img: new FormControl("", [Validators.required]),
-      nuevaEspecialidad: new FormControl("", [Validators.pattern('^[a-zA-Z ]+$')])
     })
 
     this.dataqueryService.getEspecialidades().subscribe((res) => { this.especialidades = res;})
@@ -47,33 +52,21 @@ export class RegisterAdminComponent {
   get password() {
     return this.form.get('password');
   }
-  get especialidad() {
-    return this.form.get('especialidad');
-  }
   get fechaNacimiento() {
     return this.form.get('fechaNacimiento');
   }
   get img() {
     return this.form.get('img');
   }
-  get nuevaEspecialidad() {
-    return this.form.get('nuevaEspecialidad');
-  }
 
   async registrarse(){
     try {
       this.isLoading =true;
       await this.authService.registrarUsuario(this.mail?.value, this.password?.value).then((userCredential)=>{
-        this.especialidadUsuario = this.especialidad?.value;
-
-        if(!this.nuevaEspecialidad?.pristine){
-          this.especialidadUsuario.push(this.nuevaEspecialidad?.value.toLowerCase())
-        }
 
         this.cargarImagen(this.archivo).then(()=>{
-          this.authService.altaEspecialista(this.nombre?.value, this.apellido?.value, this.dni?.value, this.fechaNacimiento?.value,
-            this.mail?.value, this.password?.value, userCredential.user?.uid,
-            this.especialidadUsuario, this.imagen)
+          this.authService.altaAdmin(this.nombre?.value, this.apellido?.value, this.dni?.value, this.fechaNacimiento?.value,
+            this.mail?.value, this.password?.value, userCredential.user?.uid, this.imagen)
             
           }).then(()=>{
             Swal.fire({
@@ -89,10 +82,6 @@ export class RegisterAdminComponent {
             })
             this.router.navigate(['login']);
             this.isLoading=false;
-            if(!this.nuevaEspecialidad?.pristine)
-            {
-              this.dataqueryService.altaEspecialidad(this.nuevaEspecialidad?.value)
-            }
           })
       })
     } catch (error: any) {

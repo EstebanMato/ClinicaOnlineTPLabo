@@ -57,6 +57,11 @@ export class AuthService {
     addDoc(col, {nombre:nombre, apellido:apellido, dni:dni, fechaNacimiento:fechaNacimiento, mail:mail, password:password, uid:uid, especialidad:especialidad, imagen:imagen, perfil:"especialista", estado:false});
   }
 
+  altaAdmin(nombre: string, apellido: string, dni: string, fechaNacimiento:string, mail: string, password: string, uid: string | undefined, imagen: string){
+    const col =collection(this.firestore, 'usuarios' );
+    addDoc(col, {nombre:nombre, apellido:apellido, dni:dni, fechaNacimiento:fechaNacimiento, mail:mail, password:password, uid:uid, imagen:imagen, perfil:"admin", estado:true});
+  }
+
   enviarMail(){
     this.afauth.currentUser
     .then((user) => {
