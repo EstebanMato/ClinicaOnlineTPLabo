@@ -1,0 +1,11 @@
+main{
+    position: absolute;
+    width: 100%;
+    top: 4rem;
+    z-index: 1;
+}
+
+.display-area{
+    margin-left: 250px;
+    width: calc(100%-250px);
+}

@@ -1,0 +1,95 @@
+<section class="form-principal">
+    <div class="px-4 py-5 px-md-5 text-center text-lg-start">
+      <div class="container ">
+        <!-- Capa de superposición para el spinner -->
+        <div class="overlay" *ngIf="isLoading">
+          <div class="spinner"></div>
+          <!-- <img src="../../../../assets/img/logo.png" alt=""> de esta forma podemos agregar una imagen en vez del spinner manual -->
+        </div>        
+        <div class="row gx-lg-5 align-items-center">
+          <div class="col-lg-8 mb-5 mb-lg-0">
+            <div class="card">
+              <div class="card-body" style="width: 100%;">
+                <form [formGroup]="form" (ngSubmit)="registrarse()">
+                  <div class="row">
+                    <div>
+                      <h2>ESPECIALISTA</h2>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="nombre">Nombre</label>
+                      <input type="text" class="form-control" id="nombre" formControlName="nombre">
+                      <ng-container *ngIf="nombre?.hasError('pattern')">
+                        <small class="text-danger">Sólo debe contener letras</small>
+                      </ng-container>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="apellido">Apellido</label>
+                      <input type="text" class="form-control" id="apellido" formControlName="apellido">
+                      <ng-container *ngIf="apellido?.hasError('pattern')">
+                        <small class="text-danger">Sólo debe contener letras</small>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label>DNI <span class="text-muted"></span></label>
+                    <input type="text" class="form-control" id="dni" formControlName="dni">
+                    <ng-container *ngIf="dni?.hasError('pattern')">
+                      <small class="text-danger">Sólo debe contener números</small>
+                    </ng-container>
+                  </div>
+                  <div class="mb-3">
+                    <label>Correo<span class="text-muted"></span></label>
+                    <input type="text" class="form-control" id="mail" formControlName="mail">
+                    <ng-container *ngIf="mail?.hasError('email')">
+                      <small class="text-danger">Formato inválido</small>
+                    </ng-container>
+                  </div>
+                  <div class="mb-3">
+                    <label>Contraseña <span class="text-muted"></span></label>
+                    <input type="password" class="form-control" id="password" formControlName="password">
+                    <ng-container *ngIf="password?.hasError('minlength')">
+                      <small class="text-danger">La contraseña debe tener al menos 6 caracteres</small>
+                    </ng-container>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5 mb-3">
+                      <label>Especialidad</label>
+                      <select class="custom-select d-block w-100" formControlName="especialidad" multiple>
+                        <option *ngFor="let especialidad of especialidades">{{ especialidad.nombre | titlecase}}</option>
+                      </select>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                      <label>Agregar Especialidad Personalizada</label>
+                      <input type="text" class="form-control" formControlName="nuevaEspecialidad">
+                      <ng-container *ngIf="nuevaEspecialidad?.hasError('pattern')">
+                        <small class="text-danger">Sólo debe contener letras en minúsculas</small>
+                      </ng-container>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label>Fecha de nacimiento</label>
+                      <input type="date" class="form-control" id="fechaNacimiento" formControlName="fechaNacimiento">
+                      <div *ngIf="fechaNacimiento?.hasError('fechaNacimientoInvalida')">
+                        <div class="text-danger">La fecha debe ser entre el 01/01/1900 y la fecha actual.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <label>Subir foto de perfil</label>
+                    <input type="file" accept=".png, .jpg, .jpeg" formControlName="img" (change)="cargarArchivo($event)" id="inputFile">
+                    <label class="labelInputFile" for="inputFile">
+                      <img src="https://cdn-icons-png.flaticon.com/512/20/20829.png" alt="cargar imagen">
+                    </label>
+                    <span *ngIf="archivo!=null">{{archivo.name}}</span>
+                  </div>
+                  <button type="submit" class="btn btn-danger btn-block mb-4" [disabled]="form.invalid || isLoading">
+                    Registrarse
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

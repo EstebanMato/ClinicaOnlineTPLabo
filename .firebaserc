@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "clinicaonlineutn"
+  },
+  "targets": {
+    "clinicaonlineutn": {
+      "hosting": {
+        "clinica-online": [
+          "clinicaonlineutn"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+nav{
+    position: fixed; /* Fija el Navbar en la parte superior de la pantalla */
+    top: 0; /* Asegura que el Navbar esté en la parte superior */
+    left: 0; /* Asegura que el Navbar esté a la izquierda */
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    height: 4rem; /* Altura del Navbar (ajusta según tus necesidades) */
+    z-index: 1000;
+}
+
+.side-nav-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.side-nav-button:hover{
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 30%;
+}
