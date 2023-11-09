@@ -72,7 +72,7 @@ export class RegisterEmpleadoComponent implements OnInit{
     try {
       this.isLoading =true;
       await this.authService.registrarUsuario(this.mail?.value, this.password?.value).then((userCredential)=>{
-        this.especialidadUsuario = this.especialidad?.value;
+        this.especialidadUsuario = this.especialidad?.value.toLowerCase();
 
         if(!this.nuevaEspecialidad?.pristine){
           this.especialidadUsuario.push(this.nuevaEspecialidad?.value.toLowerCase())

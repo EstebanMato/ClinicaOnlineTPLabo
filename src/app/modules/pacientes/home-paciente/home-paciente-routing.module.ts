@@ -5,6 +5,11 @@ import { HomePacienteComponent } from './home-paciente.component';
 
 const routes: Routes = [
   {path:'',component:HomePacienteComponent,children: []},
+  {
+    path: 'turno',
+    loadChildren: () => import('../turno-paciente/turno-paciente.module')
+      .then(mod => mod.TurnoPacienteModule)
+  },
 ];
 
 @NgModule({

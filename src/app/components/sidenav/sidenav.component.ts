@@ -1,47 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css']
 })
-export class SidenavComponent {
-  list= [
-    {
-      number: '1',
-      name: 'home',
-      icon: 'fa-solid fa-house',
-    }, 
-    {
-      number: '1',
-      name: 'Analytics',
-      icon: 'fa-solid fa-user',
-    }, 
-    {
-      number: '1',
-      name: 'home',
-      icon: 'fa-solid fa-box',
-    }, 
-    {
-      number: '1',
-      name: 'home',
-      icon: 'fa-solid fa-cart-shopping',
-    }, 
-    {
-      number: '1',
-      name: 'home',
-      icon: 'fa-solid fa-gear',
-    }, 
-    {
-      number: '1',
-      name: 'home',
-      icon: 'fa-solid fa-circle-info',
-    }, 
-    {
-      number: '1',
-      name: 'home',
-      icon: 'fa-solid fa-phone',
-    },
-  ]
+export class SidenavComponent implements OnInit{
 
+  usuarioLogueado : any;
+
+  constructor(private authService: AuthService){}
+
+  ngOnInit(): void {
+    this.authService.getLoggedUser().subscribe((user)=>{
+      if(!user){
+        return;
+      }
+      this.authService.getUsuarioPorUid(user.uid).subscribe((usuario)=>{
+        this.usuarioLogueado = usuario;
+      })
+    })
+  }
 }

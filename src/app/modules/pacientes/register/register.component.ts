@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
     this.form = new FormGroup({
       nombre: new FormControl("", [Validators.pattern('^[a-zA-Z]+$'), Validators.required],),
       apellido: new FormControl("", [Validators.pattern('^[a-zA-Z]+$'), Validators.required],),
-      dni: new FormControl("", [Validators.pattern('^[0-9]+$'), Validators.required],),
+      dni: new FormControl("", [Validators.pattern('^[0-9]+$'), Validators.required]),
       mail: new FormControl("", [Validators.email, Validators.required]),
       password: new FormControl("", [Validators.minLength(6), Validators.required]),
       fechaNacimiento: new FormControl("", [Validators.required,fechaNacimientoValidator]),

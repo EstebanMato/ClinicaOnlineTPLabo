@@ -3,40 +3,7 @@
         <img src="assets/img/logo.png" alt="logoPage" style="width: 50px;" class="d-inline-block align-top">Clínica Salud
     </a>
 
-    <div class="navbar-collapse">
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
-                    Menu 1
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                    <li class="dropdown-item">Child1</li>
-                    <li class="dropdown-item">Child2</li>
-                    <li class="dropdown-item">Child3</li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
-                    Menu 1
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                    <li class="dropdown-item">Child1</li>
-                    <li class="dropdown-item">Child2</li>
-                    <li class="dropdown-item">Child3</li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
-                    Menu 1
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                    <li class="dropdown-item">Child1</li>
-                    <li class="dropdown-item">Child2</li>
-                    <li class="dropdown-item">Child3</li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+    <div class="navbar-collapse"></div>
 
     <div class="profile-logo dropstart">
         <div *ngIf="this.usuarioLogueado.uid!=null">
@@ -45,8 +12,7 @@
                 {{this.usuarioLogueado.nombre | titlecase}}
             </button>
             <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a  class="dropdown-item">Your Profile</a></li>
-                <li><a class="dropdown-item" (click)="logOut()">Log Out</a></li>
+                <li><a class="dropdown-item" (click)="logOut()">Cerrar Sesion</a></li>
             </ul>
         </div>
     </div>

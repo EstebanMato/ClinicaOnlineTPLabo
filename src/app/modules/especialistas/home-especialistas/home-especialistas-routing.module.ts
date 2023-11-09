@@ -5,6 +5,11 @@ import { HomeEspecialistasComponent } from './home-especialistas.component';
 
 const routes: Routes = [
   {path:'',component:HomeEspecialistasComponent,children: []},
+  {
+    path: 'turno',
+    loadChildren: () => import('../turno-especialista/turno-especialista.module')
+      .then(mod => mod.TurnoEspecialistaModule)
+  },
 ];
 
 @NgModule({
