@@ -39,6 +39,7 @@ Podremos filtrar los turnos por 'Especialista' o 'Especialidad'
 ![Filtros](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2011_48_55-.png)
 
 Cancelar o calificar el turno, dependiendo del estado 
+
 ![Calificar](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2011_58_43-ClinicaOnline.png)
 ![Cancelar](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2011_59_22-ClinicaOnline.png)
 
@@ -63,7 +64,7 @@ Mi perfil, podremos observar nuestros datos del sistema
 
 
 
-Por último haciendo click en nustro Nombre, podremos finalizar la sesión
+Por último haciendo click en nustro Nombre, podremos finalizar la sesión  
 ![Cerrar sesion](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2012_09_13-ClinicaOnline.png)
 
 
