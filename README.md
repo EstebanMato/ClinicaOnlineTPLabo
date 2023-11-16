@@ -25,4 +25,4 @@ Todo los datos son requeridos y se deberá validar el Captcha
 Se enviara un correo electrónico para validar la dirección del mismo
 
 
-[Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2009_13_20-ClinicaOnline.png)
+![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2009_13_20-ClinicaOnline.png)
