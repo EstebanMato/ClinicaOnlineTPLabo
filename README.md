@@ -11,7 +11,7 @@ Es la pantalla principal desde la cual se podrá realizar el acceso al sistema o
 
 Ademas cuenta con un apartado de acceso rápido con usuarios hardcodeados (1 admin, 2 especialitas, 3 pacientes) 
 
-![Acceso Rapido](hhttps://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2009_44_09-ClinicaOnline.png)
+![Acceso Rapido](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2009_44_09-ClinicaOnline.png)
 
 ## Registrarse
 
