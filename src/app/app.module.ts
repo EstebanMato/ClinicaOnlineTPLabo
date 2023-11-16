@@ -25,7 +25,6 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-  
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     NgbModule

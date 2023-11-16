@@ -4,7 +4,7 @@
 .sidenav{
     position: fixed;
     left: 0rem;
-    width: 250px;
+    width: 200px;
     height: calc(100vh - 4rem);
     box-shadow: 0px 0px 10px rgba(238, 161, 161, 0.5);
     background-color: rgba(34,34,34,1);

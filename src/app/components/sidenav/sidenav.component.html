@@ -1,24 +1,30 @@
 <div class="sidenav">
     <div class="side-nav-content">
-        <ul class="nav-list" *ngIf="usuarioLogueado">
-            <li class="nav-list-item">
-                <i class="fa-solid fa-house"></i>
-                <span class="">
-                    <a [routerLink]="'/home/' + usuarioLogueado[0].perfil">Principal</a>
-                </span>
-            </li>
+        <ul class="nav-list" *ngIf="sesionIniciada">
             <li class="nav-list-item">
                 <i class="fa-solid fa-user"></i>
-                <span class="">
-                    <a [routerLink]="'/perfil/' + usuarioLogueado[0].perfil">Mi Perfil</a>
+                <span >
+                    <a [routerLink]="'/perfil/' + (usuarioLogueado ? usuarioLogueado[0]?.perfil : '')">Mi Perfil</a>
                 </span>
             </li>
-            <!-- <li class="nav-list-item">
+            <li class="nav-list-item">
                 <i class="fa-solid fa-calendar"></i>
-                <span class="">
-                    <a [routerLink]="'/turno/' + usuarioLogueado[0].perfil">Turnos</a>
+                <span *ngIf="!(usuarioLogueado && usuarioLogueado[0]?.perfil === 'admin')">
+                    <a [routerLink]="'/home/' + (usuarioLogueado ? usuarioLogueado[0]?.perfil : '')">Turnos</a>
                 </span>
-            </li> -->
+
+                <span *ngIf="usuarioLogueado && usuarioLogueado[0]?.perfil === 'admin'">
+                    <a [routerLink]="'/home/admin/turnos-mostrar'">Turnos</a>
+                    <!-- <a [routerLink]="'/home/' + (usuarioLogueado ? usuarioLogueado[0]?.perfil : '')">Turnos</a> -->
+                </span>
+            </li>
+            <li class="nav-list-item" *ngIf="usuarioLogueado && usuarioLogueado[0]?.perfil === 'admin'">
+                <i class="fa-solid fa-computer"></i>
+                <span class="">
+                    <a [routerLink]="'/home/' + (usuarioLogueado ? usuarioLogueado[0]?.perfil : '')">Usuarios</a>
+                </span>
+            </li>
         </ul>
     </div>
 </div>
+

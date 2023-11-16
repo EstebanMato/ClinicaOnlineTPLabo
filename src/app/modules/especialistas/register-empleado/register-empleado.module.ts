@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RegisterEmpleadoComponent } from './register-empleado.component';
 import { RegisterEmpleadoRoutingModule } from './register-empleado-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 
 
@@ -13,8 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RegisterEmpleadoRoutingModule,
-    ReactiveFormsModule
-    
+    ReactiveFormsModule,
+    NgxCaptchaModule
   ]
 })
 export class RegisterEmpleadoModule { }

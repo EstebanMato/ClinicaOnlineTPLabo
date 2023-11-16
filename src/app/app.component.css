@@ -6,6 +6,6 @@ main{
 }
 
 .display-area{
-    margin-left: 250px;
-    width: calc(100%-250px);
+    margin-left: 200px;
+    width: calc(100%-200px);
 }

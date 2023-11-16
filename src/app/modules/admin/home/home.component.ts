@@ -22,9 +22,9 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  habilitarUsuario(usuario:any){
+  cambiarEstado(usuario:any, estado:boolean){
     this.isLoading=true;
-    this.dataq.habilitarUsuario(usuario).then((res)=>{
+    this.dataq.cambiarEstadoUsuario(usuario, estado).then((res)=>{
       this.isLoading=false;
     })
   }

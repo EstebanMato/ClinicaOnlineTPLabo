@@ -1,0 +1,89 @@
+<section style="background-color: #eee;">
+    <div class="container py-5">
+      <div class="overlay" *ngIf="isLoading">
+        <div class="spinner"></div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <img [src]="usuario?.imagen" alt="imagenPerfil" class="rounded-circle img-fluid" style="width: 150px;">
+              <h5 class="my-3">{{usuario?.nombre}}, {{usuario?.apellido}}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-4">
+                  <p class="mb-0">Nombre y Apellido</p>
+                </div>
+                <div class="col-sm-8">
+                  <p class="text-muted mb-0">{{usuario?.nombre}}, {{usuario?.apellido}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-4">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-8">
+                  <p class="text-muted mb-0">{{usuario?.mail}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-4">
+                  <p class="mb-0">Fecha nacimiento</p>
+                </div>
+                <div class="col-sm-8">
+                  <p class="text-muted mb-0">{{usuario?.fechaNacimiento}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-4">
+                  <p class="mb-0">DNI</p>
+                </div>
+                <div class="col-sm-8">
+                  <p class="text-muted mb-0">{{usuario?.dni}}</p>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <p class="mb-0">Especialidad</p>
+                  </div>
+                  <div class="col-sm-8">
+                    <ng-container *ngFor="let especialidad of usuario?.especialidad">
+                      <p class="text-muted mb-0">{{ especialidad | titlecase}} </p>
+                    </ng-container>
+                  </div>                  
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <p class="mb-0">Dias atención</p>
+                  </div>
+                  <div class="col-sm-8">
+                    <ng-container *ngFor="let dia of usuario?.diasAtencion">
+                      <p class="text-muted mb-0">{{ dia }} </p>
+                    </ng-container>
+                  </div>                  
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <p class="mb-0">Horario</p>
+                  </div>
+                  <div class="col-sm-8">
+                    <p class="text-muted mb-0">{{usuario?.horaInicio}} - {{usuario?.horaFin}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

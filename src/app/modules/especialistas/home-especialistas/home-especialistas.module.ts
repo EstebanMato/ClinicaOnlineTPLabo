@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeEspecialistasRoutingModule } from './home-especialistas-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeEspecialistasComponent } from './home-especialistas.component';
 
 
@@ -13,7 +13,8 @@ import { HomeEspecialistasComponent } from './home-especialistas.component';
   imports: [
     CommonModule,
     HomeEspecialistasRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class HomeEspecialistasModule { }

@@ -1,25 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css']
 })
-export class SidenavComponent implements OnInit{
+export class SidenavComponent implements OnDestroy, OnInit {
 
-  usuarioLogueado : any;
+  sesionIniciada = false;
+  usuarioLogueado: any;
+  private authSubscription!: Subscription;
 
-  constructor(private authService: AuthService){}
+
+
+  constructor(private authService: AuthService) {
+
+  }
+
+  ngOnDestroy() {
+    this.authSubscription.unsubscribe();
+  }
 
   ngOnInit(): void {
-    this.authService.getLoggedUser().subscribe((user)=>{
-      if(!user){
-        return;
+
+    this.authSubscription = this.authService.getLoggedUser().subscribe((user: any) => {
+      this.sesionIniciada = !!user;
+      if (user) {
+        this.authService.getUsuarioPorUid(user.uid).subscribe((usuario) => {
+          this.usuarioLogueado = usuario;
+        })
       }
-      this.authService.getUsuarioPorUid(user.uid).subscribe((usuario)=>{
-        this.usuarioLogueado = usuario;
-      })
+
     })
   }
 }

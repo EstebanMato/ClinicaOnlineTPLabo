@@ -1,1 +1,27 @@
-<p>turno-admin works!</p>
+<div class="container">
+    <div class="paciente">
+        <label>Seleccionar Paciente</label>
+        <select class="form-control" [(ngModel)]="pacienteUid" (ngModelChange)="seleccionarPaciente()">
+            <option *ngFor="let paciente of pacientes" [value]="paciente.uid">{{paciente.apellido}}, {{paciente.nombre}}</option>
+        </select>
+    </div>
+
+    <div class="especialidad" *ngIf="pacienteSeleccionado">
+        <label for="specialty">Especialidades</label>
+        <select class="form-control" id="specialty" [(ngModel)]="especialidadSeleccionada">
+            <option *ngFor="let especialdiad of especilidades">{{especialdiad.nombre}}</option>
+        </select>
+        <button (click)="buscarPorEspecialidad()">Buscar Turno</button>
+    </div>
+
+    <div class="contenedor" *ngIf="especialistas != null">
+        <ng-container *ngFor="let especialista of especialistas">
+            <h3>{{ especialista.apellido }} - Horario de Atención</h3>
+            <a *ngFor="let turno of turnos">
+                <a *ngIf="turno.especialista.apellido== especialista.apellido">
+                    <button (click)="reservarTurno(turno)"> {{turno.turno}}</button>
+                </a>
+            </a>
+        </ng-container>
+    </div>
+</div>

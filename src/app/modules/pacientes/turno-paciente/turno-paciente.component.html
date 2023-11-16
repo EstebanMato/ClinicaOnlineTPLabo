@@ -10,10 +10,11 @@
     <div class="contenedor" *ngIf="especialistas != null">
         <ng-container *ngFor="let especialista of especialistas">
             <h3>{{ especialista.apellido }} - Horario de Atención</h3>
-            <ng-container>
-                    <button (click)="mostrarTurnos(especialista.horaInicio, especialista.horaFin, especialista)">Apreta aca</button>
-                </ng-container>
-            </ng-container>
-
+            <a *ngFor="let turno of turnos">
+                <a *ngIf="turno.especialista.apellido== especialista.apellido">
+                    <button (click)="reservarTurno(turno)"> {{turno.turno}}</button>  
+                </a>
+            </a>
+        </ng-container>
     </div>
 </div>

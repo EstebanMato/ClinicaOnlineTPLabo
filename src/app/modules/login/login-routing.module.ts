@@ -14,6 +14,13 @@ const routes: Routes = [{
   loadChildren: () => import('../especialistas/register-empleado/register-empleado.module')
     .then(mod => mod.RegisterEmpleadoModule)
 },
+{
+  path: 'registro',
+  loadChildren: () => import('../registro/registro.module')
+    .then(mod => mod.RegistroModule)
+},
+
+
 
 ];
 

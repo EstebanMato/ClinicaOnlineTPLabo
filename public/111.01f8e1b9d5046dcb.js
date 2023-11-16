@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkclinica_online=self.webpackChunkclinica_online||[]).push([[111],{1111:(o,t,n)=>{n.r(t),n.d(t,{PerfilAdminModule:()=>s});var c=n(6814),l=n(5879);let s=(()=>{class i{static#n=this.\u0275fac=function(a){return new(a||i)};static#i=this.\u0275mod=l.oAB({type:i});static#t=this.\u0275inj=l.cJS({imports:[c.ez]})}return i})()}}]);

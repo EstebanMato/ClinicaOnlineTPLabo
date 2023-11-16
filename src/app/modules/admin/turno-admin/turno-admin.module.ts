@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TurnoAdminComponent } from './turno-admin.component';
+import { TurnoAdminRoutingModule } from './turno-admin-routing.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -9,7 +11,9 @@ import { TurnoAdminComponent } from './turno-admin.component';
     TurnoAdminComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    TurnoAdminRoutingModule,
+    FormsModule
   ]
 })
 export class TurnoAdminModule { }

@@ -1,0 +1,59 @@
+<div class="overlay" *ngIf="isLoading">
+    <div class="spinner"></div>
+</div>
+<div class="turnos-container">
+    <form [formGroup]="filtroForm">
+        <div class="filtro-container">
+
+            <label for="especialista">Especialista:</label>
+            <input type="text" formControlName="especialista">
+
+            <label for="especialidad">Especialidad:</label>
+            <input type="text" formControlName="especialidad">
+        </div>
+
+        <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+                <tr>
+                    <th>Especialista</th>
+                    <th>Paciente</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Especialidad</th>
+                    <th>Estado</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let turno of turnosFiltrado">
+                    <td>
+                        <p class="fw-normal mb-1">{{turno.nombreEspecialista}}</p>
+                    </td>
+                    <td>
+                        <p class="fw-normal mb-1">{{turno.nombrePaciente}}</p>
+                    </td>
+                    <td>
+                        {{turno.fecha}}
+                    </td>
+                    <td>
+                        {{turno.horaInicio}}
+                    </td>
+                    <td>
+                        {{turno.especialidad}}
+                    </td>
+                    <td>
+                        <span [ngClass]="getColorPorEstado(turno.estado)">
+                            {{turno.estado}}
+                        </span>
+                    </td>
+                    <td>
+                        <button *ngIf="turno.estado === 'pendiente' " type="button"
+                            class="btn btn-outline-danger btn-sm" (click)="cancelarTurno(turno)">Cancelar
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+            </tbody>
+        </table>
+    </form>
+</div>

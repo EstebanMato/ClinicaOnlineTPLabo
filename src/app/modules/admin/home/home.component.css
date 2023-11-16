@@ -35,8 +35,19 @@
   }
 }
 
+.usuarios-container {
+  max-height: calc(100vh - 150px); /* Ajusta según sea necesario para evitar que la tabla ocupe toda la pantalla */
+  overflow-y: auto;
+}
+
 .btn-agregar {
   position: fixed;
   bottom: 10px;
   right: 10px;
+}
+
+.btn-agendar{
+  position: fixed;
+  bottom: 10px;
+  left: 250px;
 }

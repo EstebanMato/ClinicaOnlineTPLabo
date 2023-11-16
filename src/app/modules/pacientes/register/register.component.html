@@ -1,10 +1,8 @@
 <section class="form-principal">
   <div class="px-4 py-1 px-md-5 text-center text-lg-start ">
     <div class="container ">
-            <!-- Capa de superposición para el spinner -->
       <div class="overlay" *ngIf="isLoading">
         <div class="spinner"></div>
-        <!-- <img src="../../../../assets/img/logo.png" alt=""> de esta forma podemos agregar una imagen en vez del spinner manual -->
       </div>
       <div class="row gx-lg-5 align-items-center">
         <div class="col-lg-8 mb-5 mb-lg-0">
@@ -78,14 +76,22 @@
                     <span *ngFor="let img of archivo">{{img.name}} </span>
                   </span>
                 </div>
-                <button type="submit" class="btn btn-danger btn-block mb-4" [disabled]="form.invalid || isLoading">
+
+                
+                  <!-- reCAPTCHA -->
+                  <form [formGroup]="aFormGroup">
+                    <ngx-recaptcha2 #captchaElem
+                      [siteKey]="siteKey"
+                      (success)="handleSuccess($event)"
+                      formControlName="recaptcha">
+                    </ngx-recaptcha2>
+                  </form>
+
+                
+                <button type="submit" class="btn btn-danger btn-block mb-4" [disabled]="form.invalid || isLoading || !captchaResolved">
                   Registrarse
                 </button>
               </form>
-              <div class="text-center">
-                <p>Trabajas con nosotros?</p>
-                <a class="btn btn-dark" routerLink="/login/especialistas/register-empleado">Empleados</a>
-              </div>
             </div>
           </div>
         </div>

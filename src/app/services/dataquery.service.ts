@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionData, Firestore, getDocs, orderBy, query, setDoc, where } from '@angular/fire/firestore'
+import { addDoc, collection, collectionData, Firestore, getDocs, orderBy, query, QueryDocumentSnapshot, setDoc, where } from '@angular/fire/firestore'
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +49,20 @@ export class DataqueryService {
     return observable;
   }
 
-  async habilitarUsuario(uid: string) {
+  async getPacientes(): Promise<any[]> {
+    const col = collection(this.firestore, 'usuarios');
+    const q = query(col, where('perfil', '==', 'paciente'));
+    const querySnapshot = await getDocs(q);
+    const pacientes: any[] = [];
+    
+    querySnapshot.forEach((doc: QueryDocumentSnapshot<any>) => {
+      pacientes.push(doc.data());
+    });
+
+    return pacientes;
+  }
+
+  async cambiarEstadoUsuario(uid: string, estado:boolean) {
     // Define la referencia a la colección 'usuarios'
     const col = collection(this.firestore, 'usuarios');
     const q = query(col, where('uid', '==', uid));
@@ -62,8 +75,10 @@ export class DataqueryService {
     querySnapshot.forEach(async (doc) => {
       const userRef = doc.ref;
       // Actualiza el campo 'estado' a true
-      await setDoc(userRef, { estado: true }, { merge: true });
+      await setDoc(userRef, { estado: estado }, { merge: true });
     });
     return true;
   }
+
+
 }
