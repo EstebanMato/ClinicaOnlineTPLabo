@@ -1,29 +1,28 @@
 # ClinicaOnline
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
+Gestión de turnos, acceso de pacientes, especialistas y admin del sistema
 
-## Development server
+## Pagina login
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Es la pantalla principal desde la cual se podrá realizar el acceso al sistema o registro de nuevos usuarios
 
-## Code scaffolding
+![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 09_41_56-.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Ademas cuenta con un apartado de acceso rápido con usuarios hardcodeados (1 admin, 2 especialitas, 3 pacientes) 
 
-## Build
+![Acceso Rapido](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 09_44_09-ClinicaOnline.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Registrarse
 
-## Running unit tests
+Podremos realizar la carga de un nuevo usuario en el sistema, Paciente o Especialista 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![Acceso Rapido](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 11_20_06-ClinicaOnline.png)
 
-## Running end-to-end tests
+Todo los datos son requeridos y se deberá validar el Captcha 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+![Acceso Rapido](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 11_20_32-ClinicaOnline.png)
 
-## Further help
+Se enviara un correo electrónico para validar la dirección del mismo
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2009_13_20-ClinicaOnline.png)
+[Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2009_13_20-ClinicaOnline.png)
