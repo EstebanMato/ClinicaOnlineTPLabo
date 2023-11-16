@@ -193,7 +193,7 @@ export class HomeEspecialistasComponent {
       inputPlaceholder: 'Comentarios',
       showCancelButton: true,
       cancelButtonText: 'No',
-      confirmButtonText: 'Sí, cancelar',
+      confirmButtonText: 'Sí, finalizar',
       showLoaderOnConfirm: true,
       preConfirm: async (motivo) => {
         this.turnoService.finalizarTurno(turno.id,motivo)
