@@ -17,15 +17,15 @@ Ademas cuenta con un apartado de acceso rápido con usuarios hardcodeados (1 adm
 
 Podremos realizar la carga de un nuevo usuario en el sistema, Paciente o Especialista 
 
-![Acceso Rapido](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2009_51_03-ClinicaOnline.png)
+![Alta Usuario](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2009_51_03-ClinicaOnline.png)
 
 Todo los datos son requeridos y se deberá validar el Captcha 
 
-![Acceso Rapido](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2011_20_06-ClinicaOnline.png)
+![Validacion](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2011_20_06-ClinicaOnline.png)
 
 Se enviara un correo electrónico para validar la dirección del mismo (En caso de ser un perfil especialista un administrador deberá validar el acceso)
 
-![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2011_20_32-ClinicaOnline.png)
+![Confirmacion](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2011_20_32-ClinicaOnline.png)
 
 
 # Ingresar
@@ -33,44 +33,62 @@ Luego de validar el correo podrás ingresar con mail y contraseña
 
 ## Paciente
 Al ingresar con un usuario con perfil PACIENTE podremos observar los turnos y sus estados
-![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 11_42_25-.png)
+![Home Paciente](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2011_42_25-.png)
 
 Podremos filtrar los turnos por 'Especialista' o 'Especialidad' 
-![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 11_48_55-.png)
+![Filtros](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2011_48_55-.png)
 
 Cancelar o calificar el turno, dependiendo del estado 
-![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 11_58_43-ClinicaOnline.png)
-![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 11_59_22-ClinicaOnline.png)
+
+![Calificar](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2011_58_43-ClinicaOnline.png)
+![Cancelar](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2011_59_22-ClinicaOnline.png)
 
 Ver comentarios, reseña y calificación del turno, si los hubiera
-![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 11_57_00-.png)
+![Ver comentarios](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2011_57_00-.png)
 
 Y solicitar un nuevo turno 
-![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 11_58_43-ClinicaOnline.png)
-![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 12_01_39-ClinicaOnline.png)
-![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 12_02_20-.png)
+![Nuevo turno](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2012_00_39-.png)
+![Seleccionar turno](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2012_01_39-ClinicaOnline.png)
+![Turno confirmado](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2012_02_20-.png)
 
 
 A la izquierda tenemos una barra lateral desde la cual podremos navegar dentro de la aplicación
-![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 12_05_06-ClinicaOnline.png.png)
+![Side bar](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2012_05_06-ClinicaOnline.png)
 
 Turnos, es la página principal desde donde se podrán visualizar los turnos, es lo que vemos apenas ingresamos 
-![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 11_42_25-.png)
+![Turnos Paciente](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2011_42_25-.png)
 
 
 Mi perfil, podremos observar nuestros datos del sistema 
-![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 12_08_25-.png)
-
-
-Por último haciendo click en nustro Nombre, podremos finalizar la sesión
-![Pagina Login](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 12_09_13-ClinicaOnline.png)
+![Mi perfil](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2012_08_25-.png)
 
 
 
+Por último haciendo click en nustro Nombre, podremos finalizar la sesión  
+![Cerrar sesion](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2012_09_13-ClinicaOnline.png)
 
+## Especialista  
+Al ingresar con un usuario con perfil ESPECIALISTA podremos observar los turnos y sus estados
+![Home Especialista](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_38_09-.png)
 
+Podremos filtrar los turnos por 'Paciente' o 'Especialidad' 
+![Filtros](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_39_27-ClinicaOnline.png)
 
+Confirmar o cancelar los turnos, si es que todavía esta pendiente 
+![si/no](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_41_25-ClinicaOnline.png)  
+![si/no](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_42_27-ClinicaOnline.png)
+![si/no](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_43_13-ClinicaOnline.png)
 
+También finalizar la atención del mismo, una vez ya concluido el turno, dejando comentarios para el paciente 
+![si/no](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_46_18-ClinicaOnline.png)  
 
+A la izquierda tenemos una barra lateral desde la cual podremos navegar dentro de la aplicación
+![Side bar](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_51_16-ClinicaOnline.png)
+
+Turnos, es la página principal desde donde se podrán visualizar los turnos, es lo que vemos apenas ingresamos 
+![Home Especialista](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_38_09-.png)
+
+Mi perfil, podremos observar nuestros datos del sistema 
+![Mi perfil](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_52_58-.png)
 
 
