@@ -52,7 +52,7 @@ Y solicitar un nuevo turno
 ![Turno confirmado](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2012_02_20-.png)
 
 
-A la izquierda tenemos una barra lateral desde la cual podremos navegar dentro de la aplicación
+A la izquierda tenemos una barra lateral desde la cual podremos navegar dentro de la aplicación  
 ![Side bar](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2012_05_06-ClinicaOnline.png)
 
 Turnos, es la página principal desde donde se podrán visualizar los turnos, es lo que vemos apenas ingresamos 
