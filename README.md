@@ -67,12 +67,28 @@ Mi perfil, podremos observar nuestros datos del sistema
 Por último haciendo click en nustro Nombre, podremos finalizar la sesión  
 ![Cerrar sesion](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16%2012_09_13-ClinicaOnline.png)
 
+## Especialista  
+Al ingresar con un usuario con perfil ESPECIALISTA podremos observar los turnos y sus estados
+![Home Especialista](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_38_09-.png)
 
+Podremos filtrar los turnos por 'Paciente' o 'Especialidad' 
+![Filtros](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_39_27-ClinicaOnline.png)
 
+Confirmar o cancelar los turnos, si es que todavía esta pendiente 
+![si/no](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_41_25-ClinicaOnline.png)  
+![si/no](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_42_27-ClinicaOnline.png)
+![si/no](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_43_13-ClinicaOnline.png)
 
+También finalizar la atención del mismo, una vez ya concluido el turno, dejando comentarios para el paciente 
+![si/no](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_46_18-ClinicaOnline.png)  
 
+A la izquierda tenemos una barra lateral desde la cual podremos navegar dentro de la aplicación
+![Side bar](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_51_16-ClinicaOnline.png)
 
+Turnos, es la página principal desde donde se podrán visualizar los turnos, es lo que vemos apenas ingresamos 
+![Home Especialista](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_38_09-.png)
 
-
+Mi perfil, podremos observar nuestros datos del sistema 
+![Mi perfil](https://github.com/EstebanMato/ClinicaOnlineTPLabo/blob/master/imgReadme/2023-11-16 18_52_58-.png)
 
 
