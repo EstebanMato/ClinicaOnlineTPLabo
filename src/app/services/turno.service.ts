@@ -77,7 +77,7 @@ export class TurnoService {
     return true;
   }
 
-  async finalizarTurno(id: string, mensaje:string) {
+  async finalizarTurno(id: string, datosFijos:any, datosDinamicos: any, comentarios: any) {
     const col = collection(this.firestore, 'turnos');
     const q = query(col, where('id', '==', id));
     const querySnapshot = await getDocs(q);
@@ -88,7 +88,7 @@ export class TurnoService {
   
     querySnapshot.forEach(async (doc) => {
       const userRef = doc.ref;
-      await setDoc(userRef, { estado: 'finalizado' , comentarios: mensaje }, { merge: true });
+      await setDoc(userRef, { estado: 'finalizado' , comentarios: comentarios, datosFijos: datosFijos, datosDinamicos: datosDinamicos }, { merge: true });
     });
     return true;
   }
@@ -125,4 +125,87 @@ export class TurnoService {
     return true;
   }
 
+  
+  filtrarTurnos(turnos: any[], filtro: any): any[] {
+
+    if (!turnos || typeof filtro.filtrar !== 'string') {
+      return [];
+    }
+
+    return turnos.filter((turno) => {
+      const especialidadCumple = (
+        typeof turno.especialidad.nombre === 'string' &&
+        turno.especialidad.nombre.toLowerCase().includes(filtro.filtrar?.toLowerCase())
+      );
+
+
+      const especialistaCumple = (
+        turno.nombreEspecialista && (
+
+          typeof turno.nombreEspecialista === 'string' &&
+          turno.nombreEspecialista.toLowerCase().includes(filtro.filtrar?.toLowerCase())
+          )
+      );
+
+      const pacienteCumple = (
+        turno.nombrePaciente && (
+
+          typeof turno.nombrePaciente === 'string' &&
+          turno.nombrePaciente.toLowerCase().includes(filtro.filtrar?.toLowerCase())
+          )
+      );
+      
+
+      const fechaCumple = (
+        typeof turno.fecha === 'string' &&
+        turno.fecha.toLowerCase().includes(filtro.filtrar?.toLowerCase())
+      );
+
+      const horaCumple = (
+        typeof turno.horaInicio === 'string' &&
+        turno.horaInicio.toLowerCase().includes(filtro.filtrar?.toLowerCase())
+      );
+
+      const estadoCumple = (
+        typeof turno.estado === 'string' &&
+        turno.estado.toLowerCase().includes(filtro.filtrar?.toLowerCase())
+      );
+
+      const datoDinamicoCumple =
+        turno.datosDinamicos &&
+        (
+          (typeof turno.datosDinamicos.dato1?.nombre === 'string' &&
+            turno.datosDinamicos.dato1.nombre.toLowerCase().includes(filtro.filtrar?.toLowerCase())) ||
+          (typeof turno.datosDinamicos.dato2?.nombre === 'string' &&
+            turno.datosDinamicos.dato2.nombre.toLowerCase().includes(filtro.filtrar?.toLowerCase())) ||
+          (typeof turno.datosDinamicos.dato3?.nombre === 'string' &&
+            turno.datosDinamicos.dato3.nombre.toLowerCase().includes(filtro.filtrar?.toLowerCase())) ||
+          (typeof turno.datosDinamicos.dato1?.valor === 'string' &&
+            turno.datosDinamicos.dato1.valor.toLowerCase().includes(filtro.filtrar?.toLowerCase())) ||
+          (typeof turno.datosDinamicos.dato2?.valor === 'string' &&
+            turno.datosDinamicos.dato2.valor.toLowerCase().includes(filtro.filtrar?.toLowerCase())) ||
+          (typeof turno.datosDinamicos.dato3?.valor === 'string' &&
+            turno.datosDinamicos.dato3.valor.toLowerCase().includes(filtro.filtrar?.toLowerCase()))
+        );
+
+
+
+      const datoFijoCumple =
+        turno.datosFijos &&
+        (
+          (typeof turno.datosFijos.altura === 'number' &&
+            turno.datosFijos.altura.toString().includes(filtro.filtrar)) ||
+          (typeof turno.datosFijos.diagnostico === 'string' &&
+            turno.datosFijos.diagnostico.toLowerCase().includes(filtro.filtrar?.toLowerCase())) ||
+          (typeof turno.datosFijos.peso === 'number' &&
+            turno.datosFijos.peso.toString().includes(filtro.filtrar)) ||
+          (typeof turno.datosFijos.presion === 'number' &&
+            turno.datosFijos.presion.toString().includes(filtro.filtrar)) ||
+          (typeof turno.datosFijos.temperatura === 'number' &&
+            turno.datosFijos.temperatura.toString().includes(filtro.filtrar))
+        );
+
+      return especialidadCumple || pacienteCumple || especialistaCumple || fechaCumple || horaCumple || estadoCumple || datoDinamicoCumple || datoFijoCumple;
+    });
+  }
 }

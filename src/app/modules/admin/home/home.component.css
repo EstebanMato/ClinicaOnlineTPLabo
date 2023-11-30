@@ -46,8 +46,36 @@
   right: 10px;
 }
 
+.btn-excel{
+  position: fixed;
+  bottom: 10px;
+  right: 120px;
+}
+
 .btn-agendar{
   position: fixed;
   bottom: 10px;
   left: 250px;
 }
+
+.square-image {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.usuarios-container {
+  overflow-x: hidden; 
+  overflow-y: auto;
+}
+.usuarios-container::-webkit-scrollbar {
+  width: 5px; 
+}
+
+.usuarios-container::-webkit-scrollbar-thumb {
+  background-color: #888; 
+}
+
+.usuarios-container::-webkit-scrollbar-track-x {
+  display: none;
+}
+

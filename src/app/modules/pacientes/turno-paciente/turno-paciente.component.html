@@ -1,20 +1,38 @@
 <div class="container">
-    <div class="especialidad">
-        <label for="specialty">Especialidades</label>
-        <select class="form-control" id="specialty" [(ngModel)]="especialidadSeleccionada">
-            <option *ngFor="let especialdiad of especilidades">{{especialdiad.nombre}}</option>
-        </select>
-        <button (click)="buscarPorEspecialidad()">Buscar Turno</button>
-    </div>
+    <div class="container-turno">
+        <div class="container-especialistas">
+            <div class="especialista-item" *ngFor="let especialista of especialistas">
+                <button type="button" class="btn btn-dark no-padding" (click)="mostrarEspecialidades(especialista)">
+                    <img [src]="especialista.imagen" alt="Imagen de {{especialista.nombre}} {{especialista.apellido}}"
+                        class="full-image">
+                </button>
+                <p><strong>{{especialista.apellido}}, {{especialista.nombre}}</strong></p>
+            </div>
+        </div>
 
-    <div class="contenedor" *ngIf="especialistas != null">
-        <ng-container *ngFor="let especialista of especialistas">
-            <h3>{{ especialista.apellido }} - Horario de Atención</h3>
-            <a *ngFor="let turno of turnos">
-                <a *ngIf="turno.especialista.apellido== especialista.apellido">
-                    <button (click)="reservarTurno(turno)"> {{turno.turno}}</button>  
-                </a>
-            </a>
-        </ng-container>
+        <div class="imagenes-container">
+            <ng-container *ngFor="let especialidadDispo of especialidadesDisponibles">
+                <ng-container *ngFor="let especialidad of especialidades">
+                    <ng-container *ngIf="especialidadDispo == especialidad.nombre">
+                        <div class="image-wrapper">
+                            <button type="button" class="image-button" (click)="buscarTurnos(especialidad)">
+                                <img [src]="especialidad.img" alt="Imagen de {{especialidad.nombre}}"
+                                    (error)="mostrarImagenPorDefecto($event)" class="rounded-circle">
+                                <p>{{especialidad.nombre}}</p>
+                            </button>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </div>
+        <div class="turnos-container">
+            <ng-container *ngIf="turnos">
+                <ng-container *ngFor="let turno of turnos">
+                    <button class="btn btn-outline-danger rounded-pill m-2" (click)="reservarTurno(turno)">
+                        {{turno.turno | formatoHora}}
+                    </button>
+                </ng-container>
+            </ng-container>
+        </div>
     </div>
 </div>

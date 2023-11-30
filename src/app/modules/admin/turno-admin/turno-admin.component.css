@@ -1,0 +1,19 @@
+.buscador{
+    padding: 15px;
+    border: 2px solid transparent;
+    border-radius: 10px; 
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+}
+
+.container{
+    padding: 50px;
+}
+
+.paciente{
+    margin-bottom: 25px;
+}
+
+.texto-rojo {
+    margin-top: 20px;
+    color: red;
+  }

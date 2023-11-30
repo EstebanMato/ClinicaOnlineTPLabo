@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin, take } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2'; 
+import { fadeInUpAnimation } from 'src/app/components/animaciones/animaciones.animation';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  animations: [fadeInUpAnimation]
 })
 export class LoginComponent implements OnInit {
 

@@ -24,6 +24,13 @@
                     <a [routerLink]="'/home/' + (usuarioLogueado ? usuarioLogueado[0]?.perfil : '')">Usuarios</a>
                 </span>
             </li>
+
+            <li class="nav-list-item" *ngIf="usuarioLogueado && usuarioLogueado[0]?.perfil === 'especialista'">
+                <i class="fa-solid fa-stethoscope"></i>
+                <span class="">
+                    <a [routerLink]="'/historiaclinica/' + (usuarioLogueado ? usuarioLogueado[0]?.perfil : '')">Pacientes</a>
+                </span>
+            </li>
         </ul>
     </div>
 </div>

@@ -1,11 +1,11 @@
-<section class="form-principal">
+<section class="form-principal" >
   <div class="px-4 py-5 px-md-5 text-center text-lg-start">
     <div class="container">
       <!-- Capa de superposición para el spinner -->
       <div class="overlay" *ngIf="isLoading">
         <div class="spinner"></div>
       </div>
-      <div class="row gx-lg-5 align-items-center">
+      <div class="row gx-lg-5 align-items-center" [@fadeInUp]>
         <div class="col-lg-6 mb-5 mb-lg-0">
           <h1 class="my-5 display-3 fw-bold ls-tight">
             Clínica Salud <br />
@@ -45,7 +45,7 @@
         </div>
       </div>
     </div>
-    <div class="d-flex flex-column align-items-end mt-3">
+    <div class="d-flex flex-column align-items-end mt-3" [@fadeInUp]>
       <div>Admin
           <button class="btn-container" 
           (click)="accesoRapido('yrxrxflxrtlmhpydjs@cazlq.com', '123456', '/home/admin')" 

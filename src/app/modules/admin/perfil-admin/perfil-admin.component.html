@@ -1,1 +1,56 @@
-<p>perfil-admin works!</p>
+<div class="container py-5">
+  <div class="overlay" *ngIf="isLoading">
+    <div class="spinner"></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body text-center">
+          <img [src]="usuario?.imagen" alt="imagenPerfil" appRedondearImagen style="width: 150px;">
+          <h5 class="my-3">{{usuario?.nombre}}, {{usuario?.apellido}}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="mb-0"><strong>Nombre y Apellido</strong></p>
+            </div>
+            <div class="col-sm-8">
+              <p class="text-muted mb-0">{{usuario?.nombre}}, {{usuario?.apellido}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="mb-0"><strong>Email</strong></p>
+            </div>
+            <div class="col-sm-8">
+              <p class="text-muted mb-0">{{usuario?.mail}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="mb-0"><strong>Fecha Nacimiento</strong></p>
+            </div>
+            <div class="col-sm-8">
+              <p class="text-muted mb-0">{{usuario?.fechaNacimiento}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="mb-0"><strong>DNI</strong></p>
+            </div>
+            <div class="col-sm-8">
+              <p class="text-muted mb-0">{{usuario?.dni}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

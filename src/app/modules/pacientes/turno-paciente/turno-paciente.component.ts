@@ -23,19 +23,23 @@ export class TurnoPacienteComponent implements OnInit {
     especialidad: '',
 
   }
+  especialistaSeleccionado!: any;
+  especialistas!: any[];
+  especialidadesDisponibles!: any[]
+  especialidades: any;
+  turnosOcupados: any[] = [];
+  especialidadSeleccionada: any;
+
   paciente: any;
   intervalo = 30;
-  especialistas!: any[];
-  especilidades: any;
-  especialidadSeleccionada: any;
-  turnosOcupados: any[] = [];
   turnos: any[] = [];
   fechaActual!: any;
-  constructor(private turnoService: TurnoService, private authService: AuthService , private router: Router) { }
+  constructor(private turnoService: TurnoService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.turnoService.getEspecialidades().subscribe((res) => {
-      this.especilidades = res;
+      this.especialidades = res;
+
     })
     this.authService.getLoggedUser().subscribe((user) => {
       this.paciente = user;
@@ -43,31 +47,27 @@ export class TurnoPacienteComponent implements OnInit {
     this.turnoService.getTurnos().subscribe((res) => {
       this.turnosOcupados = res;
     })
-  }
-
-  buscarPorEspecialidad() {
     this.turnoService.getEspecialistas().subscribe((res) => {
-      this.especialistas = [];
-      const especialistas = res;
-      for (let i = 0; i < especialistas.length; i++) {
-        const especialista = especialistas[i];
-        const especialidades = especialista.especialidad;
 
-        for (let j = 0; j < especialidades.length; j++) {
-          if (especialidades[j] == this.especialidadSeleccionada) {
-            this.especialistas.push(especialistas[i])
-          }
-        }
-      }
-      this.buscarTurnos()
-    });
+      this.especialistas = res
+
+    })
   }
 
-  buscarTurnos() {
+  mostrarEspecialidades(especialista: any) {
     this.turnos = [];
-    this.especialistas.forEach(user => {
-      this.mostrarTurnos(user.horaInicio, user.horaFin, user)
-    });
+    this.especialistaSeleccionado = especialista;
+    this.especialidadesDisponibles = especialista.especialidad
+  }
+
+  mostrarImagenPorDefecto(event: Event) {
+    (event.target as HTMLImageElement).src = 'https://firebasestorage.googleapis.com/v0/b/clinicaonlineutn.appspot.com/o/especialidades%2Ffarmacia.png?alt=media&token=91fb52dd-8578-4f52-aaf3-365695e02266';
+  }
+
+  buscarTurnos(especialidad: any) {
+    this.especialidadSeleccionada = especialidad;
+    this.turnos = [];
+    this.mostrarTurnos(this.especialistaSeleccionado.horaInicio, this.especialistaSeleccionado.horaFin, this.especialistaSeleccionado);
   }
 
   mostrarTurnos(horaInicio: string, horaFin: string, especialista: any) {
@@ -141,6 +141,15 @@ export class TurnoPacienteComponent implements OnInit {
         date2.setHours(parseInt(horaFin.split(":")[0]), parseInt(horaFin.split(":")[1]));
       }
     }
+  }
+
+  formatoHora(date: Date): string {
+    const day = ('0' + date.getDate()).slice(-2);
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const hours = ('0' + date.getHours()).slice(-2);
+    const minutes = ('0' + date.getMinutes()).slice(-2);
+
+    return `${day}-${month} ${hours}:${minutes}`;
   }
 
   reservarTurno(turno: any) {

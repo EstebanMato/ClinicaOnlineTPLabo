@@ -4,11 +4,14 @@ import { Subscription, combineLatest, map } from 'rxjs';
 import { DataqueryService } from 'src/app/services/dataquery.service';
 import { TurnoService } from 'src/app/services/turno.service';
 import Swal from 'sweetalert2';
+import { fadeInRightAnimation } from 'src/app/components/animaciones/animaciones.animation';
+
 
 @Component({
   selector: 'app-turno-mostrar',
   templateUrl: './turno-mostrar.component.html',
-  styleUrls: ['./turno-mostrar.component.css']
+  styleUrls: ['./turno-mostrar.component.css'],
+  animations: [fadeInRightAnimation]
 })
 export class TurnoMostrarComponent implements OnInit {
 
@@ -25,8 +28,7 @@ export class TurnoMostrarComponent implements OnInit {
 
   ngOnInit(): void {
     this.filtroForm = this.formBuilder.group({
-      especialidad: [''],
-      especialista: [''],
+      filtrar: [''],
     });
 
     this.isLoading = true;
@@ -48,7 +50,7 @@ export class TurnoMostrarComponent implements OnInit {
         });
       })
     ).subscribe((turnosDetallado) => {
-      this.turnosDetallado = turnosDetallado;
+      this.turnosDetallado = this.ordenarPorFecha(turnosDetallado);
       this.turnosFiltrado = this.turnosDetallado;
       this.isLoading = false;
     });
@@ -58,24 +60,103 @@ export class TurnoMostrarComponent implements OnInit {
     });
   }
 
-  filtrarTurnos(turnos: any[], filtro: any): any[] {
+  ordenarPorFecha(turnosConFecha: any[]): any[] {
+    turnosConFecha.sort((a, b) => {
+      const dateA = this.convertirAFecha(a.fecha);
+      const dateB = this.convertirAFecha(b.fecha);
 
-    if (!turnos || typeof filtro.especialidad !== 'string') {
-      return [];
+      return dateA.getTime() - dateB.getTime();
+    });
+
+    return turnosConFecha;
+  }
+
+  private convertirAFecha(fechaString: string): Date {
+    const partesFecha = fechaString.split('/');
+    const fecha = new Date(
+      parseInt(partesFecha[2]),
+      parseInt(partesFecha[1]) - 1,
+      parseInt(partesFecha[0])
+    );
+    return fecha;
+  }
+
+  filtrarTurnos(turnos: any[], filtro: any): any[] {
+    return this.turnoService.filtrarTurnos(turnos,filtro)
+  }
+
+  verComentariosTurno(turno: any) {
+    console.log(turno)
+    let htmlContent = `
+      <p><strong>Comentarios:</strong> ${turno.comentarios}</p>
+      
+    `;
+
+    if (turno.datosFijos) {
+      if (turno.datosFijos.altura !== "") {
+        htmlContent += `
+          <p><strong>Altura:</strong> ${turno.datosFijos.altura}</p>
+          `;
+      }
+      if (turno.datosFijos.peso !== "") {
+        htmlContent += `
+          <p><strong>Peso:</strong> ${turno.datosFijos.peso}</p>
+          `;
+      }
+      if (turno.datosFijos.presion !== "") {
+        htmlContent += `
+          <p><strong>Presion:</strong> ${turno.datosFijos.presion}</p>
+          `;
+      }
+      if (turno.datosFijos.temperatura !== "") {
+        htmlContent += `
+          <p><strong>Temperatura:</strong> ${turno.datosFijos.temperatura}</p>
+          `;
+      }
+      if (turno.datosFijos.diagnostico !== "") {
+        htmlContent += `
+          <p><strong>Diagnostico:</strong> ${turno.datosFijos.diagnostico}</p>
+          `;
+      }
     }
 
-    return turnos.filter((turno) => {
-      const especialidadCumple = (
-        typeof turno.especialidad === 'string' &&
-        turno.especialidad.toLowerCase().includes(filtro.especialidad?.toLowerCase())
-      );
+    if (turno.datosDinamicos) {
+      if (turno.datosDinamicos.dato1.nombre !== "") {
+        htmlContent += `
+          <p><strong>${turno.datosDinamicos.dato1.nombre}:</strong> ${turno.datosDinamicos.dato1.valor}</p>
+          `;
+      }
+      if (turno.datosDinamicos.dato2.nombre !== "") {
+        htmlContent += `
+          <p><strong>${turno.datosDinamicos.dato2.nombre}:</strong> ${turno.datosDinamicos.dato2.valor}</p>
+          `;
+      }
+      if (turno.datosDinamicos.dato3.nombre !== "") {
+        htmlContent += `
+          <p><strong>${turno.datosDinamicos.dato3.nombre}:</strong> ${turno.datosDinamicos.dato3.valor}</p>
+          `;
+      }
+    }
 
-      const especialistaCumple = (
-        typeof turno.nombreEspecialista === 'string' &&
-        turno.nombreEspecialista.toLowerCase().includes(filtro.especialista?.toLowerCase())
-      );
 
-      return especialidadCumple && especialistaCumple;
+    if (turno.resenia !== "") {
+      htmlContent += `
+      <p><strong>Reseña:</strong> ${turno.resenia}</p>
+      `;
+    }
+
+    if (turno.calificacion !== "") {
+      htmlContent += `
+        <label for="calificacion">Calificación:</label>
+        <input type="range" id="calificacion" name="calificacion" min="1" max="5" value="${turno.calificacion}" disabled>
+      `;
+    }
+
+    Swal.fire({
+      title: 'Comentarios',
+      html: htmlContent,
+      confirmButtonText: 'Cerrar',
+      allowOutsideClick: () => !Swal.isLoading(),
     });
   }
 
@@ -89,6 +170,8 @@ export class TurnoMostrarComponent implements OnInit {
         return 'badge rounded-pill text-bg-danger';
       case 'pendiente':
         return 'badge rounded-pill text-bg-secondary';
+      case 'finalizado':
+        return 'badge rounded-pill text-bg-warning';
 
       default:
         return 'badge rounded-pill text-bg-muted'; // Clase de Bootstrap para texto gris por defecto
@@ -105,7 +188,7 @@ export class TurnoMostrarComponent implements OnInit {
       showLoaderOnConfirm: true,
       preConfirm: async (motivo) => {
         console.log(turno.id, motivo)
-        this.turnoService.cancelarTurno(turno.id,motivo)
+        this.turnoService.cancelarTurno(turno.id, motivo)
       },
       allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {

@@ -1,20 +1,22 @@
 <div class="overlay" *ngIf="isLoading">
     <div class="spinner"></div>
 </div>
-<div class="turnos-container">
+<div class="turnos-container" [@fadeInRight]>
     <form [formGroup]="filtroForm">
         <div class="filtro-container">
 
-            <label for="especialista">Especialista:</label>
-            <input type="text" formControlName="especialista">
+            <div class="buscar-container">
+                <label for="filtrar" class="buscar-label">Buscar:</label>
+                <div class="input-container">
+                  <input type="text" id="filtrar" formControlName="filtrar">
+                  <i class="fa fa-search"></i>
+                </div>
+                <button class="btn-danger btn-sm btn-nuevo-turno" routerLink="turno/">Nuevo Turno</button>
+              </div>
 
-            <label for="especialidad">Especialidad:</label>
-            <input type="text" formControlName="especialidad">
-
-            <button class="btn-danger btn-sm btn-nuevo-turno" routerLink="turno/">Nuevo Turno</button>
         </div>
 
-        <table class="table align-middle mb-0 bg-white">
+        <table class="table table-striped align-middle mb-0 bg-white">
             <thead class="bg-light">
                 <tr>
                     <th>Especialista</th>
@@ -38,11 +40,11 @@
                         {{turno.horaInicio}}
                     </td>
                     <td>
-                        {{turno.especialidad}}
+                        {{turno.especialidad.nombre | primeraMayuscula}}
                     </td>
                     <td>
-                        <span [ngClass]="getColorPorEstado(turno.estado)">
-                            {{turno.estado}}
+                        <span [ngClass]="(turno.estado | colorPorEstado)">
+                            {{turno.estado | primeraMayuscula}}
                         </span>
                     </td>
                     <td>
@@ -55,8 +57,7 @@
                     </td>
                     <td>
                         <span
-                            *ngIf="(turno.comentarios !== '' && turno.comentarios!== undefined) || (turno.resenia !== '' && turno.resenia !== undefined)"
-                            class="d-flex justify-content-center">
+                            *ngIf="(turno.comentarios !== '' && turno.comentarios!== undefined) || (turno.resenia !== '' && turno.resenia !== undefined)">
                             <i class="fas fa-eye text-muted" (click)="verComentariosTurno(turno)"></i>
                         </span>
                     </td>

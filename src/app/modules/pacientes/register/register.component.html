@@ -1,4 +1,4 @@
-<section class="form-principal">
+<section class="form-principal" [@fadeInUp]>
   <div class="px-4 py-1 px-md-5 text-center text-lg-start ">
     <div class="container ">
       <div class="overlay" *ngIf="isLoading">
@@ -64,8 +64,8 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3 mb-3">
-                  <label>Subir foto de perfil</label>
+                <div class="col-md-4 mb-3">
+                  <label>Seleccionar 2 fotos</label>
                   <input type="file" accept=".png, .jpg, .jpeg" formControlName="img" multiple (change)="cargarArchivo($event)"
                     id="inputFile">
                   <label class="labelInputFile" for="inputFile">

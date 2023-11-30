@@ -1,67 +1,126 @@
-<section style="background-color: #eee;">
-  <div class="container py-5">
-    <div class="overlay" *ngIf="isLoading">
-      <div class="spinner"></div>
-    </div>
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card mb-4">
-          <div class="card-body text-center">
-            <img [src]="usuario?.imagen" alt="imagenPerfil" class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3">{{usuario?.nombre}}, {{usuario?.apellido}}</h5>
-          </div>
+<div class="container py-5">
+  <div class="overlay" *ngIf="isLoading">
+    <div class="spinner"></div>
+  </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-body text-center">
+          <img [src]="usuario?.imagen[0]" alt="imagenPerfil" appRedondearImagen style="width: 150px; height: 150px;">
+          <img [src]="usuario?.imagen[1]" alt="imagenPerfil" style="width: 150px; height: 150px;">
+          <h5 class="my-3">{{usuario?.nombre}}, {{usuario?.apellido}}</h5>
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#filtroHistoriaClinica"
+            (click)="filtrarPorEspecialidad()">
+            Historia clínica
+          </button>
         </div>
       </div>
-      <div class="col-lg-8">
-        <div class="card mb-4">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-4">
-                <p class="mb-0">Nombre y Apellido</p>
-              </div>
-              <div class="col-sm-8">
-                <p class="text-muted mb-0">{{usuario?.nombre}}, {{usuario?.apellido}}</p>
-              </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="mb-0"><strong>Nombre y Apellido</strong></p>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-4">
-                <p class="mb-0">Email</p>
-              </div>
-              <div class="col-sm-8">
-                <p class="text-muted mb-0">{{usuario?.mail}}</p>
-              </div>
+
+            <div class="col-sm-8">
+              <p class="text-muted mb-0">{{usuario?.nombre}}, {{usuario?.apellido}}</p>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-4">
-                <p class="mb-0">Fecha Nacimiento</p>
-              </div>
-              <div class="col-sm-8">
-                <p class="text-muted mb-0">{{usuario?.fechaNacimiento}}</p>
-              </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="mb-0"><strong>Email</strong></p>
             </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-4">
-                <p class="mb-0">DNI</p>
-              </div>
-              <div class="col-sm-8">
-                <p class="text-muted mb-0">{{usuario?.dni}}</p>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-4">
-                  <p class="mb-0">Obra Social</p>
-                </div>
-                <div class="col-sm-8">
-                  <p class="text-muted mb-0">{{usuario?.obraSocial}}</p>
-                </div>
-              </div>
+            <div class="col-sm-8">
+              <p class="text-muted mb-0">{{usuario?.mail}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="mb-0"><strong>Fecha Nacimiento</strong></p>
+            </div>
+            <div class="col-sm-8">
+              <p class="text-muted mb-0">{{usuario?.fechaNacimiento}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="mb-0"><strong>DNI</strong></p>
+            </div>
+            <div class="col-sm-8">
+              <p class="text-muted mb-0">{{usuario?.dni}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-4">
+              <p class="mb-0"><strong>Obra Social</strong></p>
+            </div>
+            <div class="col-sm-8">
+              <p class="text-muted mb-0">{{usuario?.obraSocial}}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+
+  <!-- Modal Filtro Por Especialidad -->
+  <div class="modal fade" id="filtroHistoriaClinica" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Historia clínica</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-grid gap-2">
+            <button type="button" class="btn btn-light" data-bs-dismiss="modal" data-bs-toggle="modal"
+              data-bs-target="#HistoriaClinica" *ngFor="let especialidad of arrayEspecialidades"
+              [textContent]="especialidad" (click)="historiaClinicaEspecialidad(especialidad)"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Historia Clinica Filtrado -->
+  <div class="modal fade" id="HistoriaClinica" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabels">{{usuario?.nombre}}, {{usuario?.apellido}}. Historia clínica
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ng-container *ngFor="let turno of turnosDetallado">
+            <ng-container *ngIf="turno.especialidad.nombre === especialidadSeleccionada">
+              Fecha: {{turno.fecha}}, {{turno.horaInicio}}<br>
+              Especialista: {{turno.nombreEspecialista}}<br>
+              Comentarios: {{turno.comentarios}}<br>
+              Altura: {{turno.datosFijos.altura}}<br>
+              Peso: {{turno.datosFijos.peso}}<br>
+              Presion: {{turno.datosFijos.presion}}<br>
+              Temperatura: {{turno.datosFijos.temperatura}}<br>
+              Diagnostico: {{turno.datosFijos.diagnostico}}<br>
+              <ng-container *ngIf="turno.datosDinamicos.dato1.nombre != ''">{{turno.datosDinamicos.dato1.nombre}}: {{turno.datosDinamicos.dato1.valor}}<br></ng-container>
+              <ng-container *ngIf="turno.datosDinamicos.dato2.nombre != ''">{{turno.datosDinamicos.dato2.nombre}}: {{turno.datosDinamicos.dato2.valor}}<br></ng-container>
+              <ng-container *ngIf="turno.datosDinamicos.dato3.nombre != ''">{{turno.datosDinamicos.dato3.nombre}}: {{turno.datosDinamicos.dato3.valor}}<br></ng-container>
+              
+             
+              <hr>
+            </ng-container>
+          </ng-container>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="descargarPdf()">Descargar pdf</button>
+        </div>
+      </div>
+    </div>
+  </div>

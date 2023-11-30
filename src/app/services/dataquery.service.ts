@@ -80,5 +80,22 @@ export class DataqueryService {
     return true;
   }
 
+  async setHorarios(especialista: any, diasDeTrabajo: any, horaInicio: any, horaFin: any){
+    // Define la referencia a la colección 'usuarios'
+    const col = collection(this.firestore, 'usuarios');
+    const q = query(col, where('uid', '==', especialista.uid));
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.size === 0) {
+      return false;
+    }
+  
+    querySnapshot.forEach(async (doc) => {
+      const userRef = doc.ref;
+      // Actualiza el campo 'estado' a true
+      await setDoc(userRef, { diasAtencion: diasDeTrabajo, horaInicio: horaInicio, horaFin: horaFin }, { merge: true });
+    });
+    return true;
+  }
 
 }

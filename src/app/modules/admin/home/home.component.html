@@ -1,57 +1,52 @@
-<div class="overlay" *ngIf="isLoading">
-  <div class="spinner"></div>
-</div>
-<div class="usuarios-container">
-  <table class="table align-middle mb-0 bg-white">
-    <thead class="bg-light">
-      <tr>
-        <th>Nombre</th>
-        <th>Tipo</th>
-        <th>DNI</th>
-        <th>Estado</th>
-        <th>Habilitar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let usuario of usuarios">
-        <td>
-          <div class="d-flex align-items-center">
-            <img [src]="usuario.imagen" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
-            <div class="ms-3">
-              <p class="fw-bold mb-1">{{usuario.apellido}}, {{usuario.nombre}}</p>
-              <p class="text-muted mb-0">{{usuario.mail}}</p>
-            </div>
+<div class="container" style="margin-top: 10px;">
+  <div class="overlay" *ngIf="isLoading">
+    <div class="spinner"></div>
+  </div>
+  <div class="usuarios-container" [@fadeInUp]>
+    <div class="row">
+      <div class="col-md-3 mb-4" *ngFor="let usuario of usuarios">
+        <div class="card">
+          <img [src]="usuario.imagen" alt="" class="card-img-top rounded-circle"
+            style="width: 100px; height: 100px; margin: 10px;">
+          <p style="margin-left: 16px; font-size: 14px;" class="text-muted mb-0">{{usuario.perfil | primeraMayuscula}}</p>
+          <div class="card-body">
+            <h5 class="card-title">{{usuario.apellido}}, {{usuario.nombre}}</h5>
+            <p style="font-size: 12px;" class="text-muted mb-0">{{usuario.dni}}</p>
+            <p style="font-size: 12px;" class="text-muted mb-0">{{usuario.mail}}</p>
+            <ng-container *ngIf="usuario.especialidad">
+              <p style="font-size: 12px;" class="card-text"><span class="fw-bold">Especialidad:</span>
+                {{usuario.especialidad}}</p>
+            </ng-container>
+            <ng-container *ngIf="usuario.obraSocial">
+              <p style="font-size: 12px;" class="card-text"><span class="fw-bold">Obra Social:</span>
+                {{usuario.obraSocial}}</p>
+            </ng-container>
+            <p style="font-size: 12px;" class="card-text"><span class="fw-bold">Estado:</span>
+              <span
+                [ngClass]="{'badge rounded-pill': true, 'text-bg-success': usuario.estado, 'text-bg-danger': !usuario.estado}">
+                {{ usuario.estado ? 'Activo' : 'No Activo' }}
+              </span>
+            </p>
+            <button *ngIf="!usuario.estado" type="button" class="btn btn-outline-dark btn-sm"
+              (click)="cambiarEstado(usuario.uid, true)">Habilitar</button>
+            <button *ngIf="usuario.estado" type="button" class="btn btn-outline-dark btn-sm"
+              (click)="cambiarEstado(usuario.uid, false)" appHoverEffectblack>Deshabilitar</button>
+            <button *ngIf="usuario.perfil == 'paciente'" type="button" style="margin-left: 20px;"
+              class="btn btn-success btn-sm" (click)="descargarPdf(usuario)">Turnos</button>
           </div>
-        </td>
-        <td>
-          <p class="fw-normal mb-1">{{usuario.perfil}}</p>
-          <p class="text-muted mb-0">{{usuario.especialidad}}</p>
-          <p class="text-muted mb-0">{{usuario.obraSocial}}</p>
-        </td>
-        <td>{{usuario.dni}}</td>
-        <td>
-          <span [ngClass]="{'badge rounded-pill': true, 
-                 'text-bg-success': usuario.estado, 
-                 'text-bg-danger': !usuario.estado}">
-            {{ usuario.estado ? 'Activo' : 'No Activo' }}
-          </span>
-        </td>
-        <td>
-          <button *ngIf="!usuario.estado" type="button" class="btn btn-outline-dark btn-sm"
-            (click)="cambiarEstado(usuario.uid, true)">Habilitar
-          </button>
-          <button *ngIf="usuario.estado" type="button" class="btn btn-outline-dark btn-sm"
-            (click)="cambiarEstado(usuario.uid, false)">Deshabilitar
-          </button>
-        </td>
-      </tr>
-      <tr>
-    </tbody>
-  </table>
-</div>
-<div >
-  <button type="button" class="btn btn-outline-dark btn-agendar" routerLink="/home/admin/turnos">Agendar Turno</button>
-</div>
-<div style="position: fixed; bottom: 10px; right: 10px;">
-  <button type="button" class="btn btn-outline-dark btn-agregar" routerLink="register">Alta Admin</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button type="button" class="btn btn-outline-dark btn-agendar" routerLink="/home/admin/turnos">Agendar
+      Turno</button>
+  </div>
+  <div>
+    <button type="button" class="btn btn-outline-success btn-excel" (click)="descargarExcel()">Descargar Excel</button>
+  </div>
+
+  <div>
+    <button type="button" class="btn btn-outline-dark btn-agregar" routerLink="register">Alta Admin</button>
+  </div>
 </div>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TurnoAdminComponent } from './turno-admin.component';
 import { TurnoAdminRoutingModule } from './turno-admin-routing.module';
 import { FormsModule } from '@angular/forms';
+import { SharedModuleModule } from '../../shared-module/shared-module.module';
 
 
 
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     TurnoAdminRoutingModule,
-    FormsModule
+    FormsModule,
+    SharedModuleModule
   ]
 })
 export class TurnoAdminModule { }

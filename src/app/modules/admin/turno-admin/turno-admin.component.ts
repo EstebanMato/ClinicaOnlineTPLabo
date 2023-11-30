@@ -34,6 +34,7 @@ export class TurnoAdminComponent implements OnInit{
   pacientes!: any;
   turnos: any[] = [];
   fechaActual!: any;
+  seBusco=false;
   constructor(private turnoService: TurnoService, private authService: AuthService , private router: Router, private dataquery: DataqueryService) { }
 
   ngOnInit(): void {
@@ -48,7 +49,17 @@ export class TurnoAdminComponent implements OnInit{
     })
   }
 
+  formatoHora(date: Date): string {
+    const day = ('0' + date.getDate()).slice(-2);
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const hours = ('0' + date.getHours()).slice(-2);
+    const minutes = ('0' + date.getMinutes()).slice(-2);
+
+    return `${day}-${month} ${hours}:${minutes}`;
+  }
+
   buscarPorEspecialidad() {
+    this.seBusco=true;
     this.turnoService.getEspecialistas().subscribe((res) => {
       this.especialistas = [];
       const especialistas = res;
@@ -71,6 +82,7 @@ export class TurnoAdminComponent implements OnInit{
     this.especialistas.forEach(user => {
       this.mostrarTurnos(user.horaInicio, user.horaFin, user)
     });
+    console.log(this.turnos)
   }
 
   seleccionarPaciente(){

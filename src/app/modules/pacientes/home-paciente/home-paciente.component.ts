@@ -5,15 +5,17 @@ import { AuthService } from 'src/app/services/auth.service';
 import { DataqueryService } from 'src/app/services/dataquery.service';
 import { TurnoService } from 'src/app/services/turno.service';
 import Swal from 'sweetalert2';
+import { fadeInRightAnimation } from 'src/app/components/animaciones/animaciones.animation';
 
 @Component({
   selector: 'app-home-paciente',
   templateUrl: './home-paciente.component.html',
-  styleUrls: ['./home-paciente.component.css']
+  styleUrls: ['./home-paciente.component.css'],
+  animations: [fadeInRightAnimation]
 })
 export class HomePacienteComponent {
   filtroForm!: FormGroup;
-  isLoading = false;
+  isLoading:boolean = false;
   turnosDetallado: any;
   turnosFiltrado: any;
   turnos: any;
@@ -24,12 +26,11 @@ export class HomePacienteComponent {
 
   ngOnInit(): void {
     this.filtroForm = this.formBuilder.group({
-      especialista: [''],
-      especialidad: [''],
+      filtrar: [''],
     });
 
     this.isLoading = true;
-    
+
     const turnos$ = this.turnoService.getTurnos();
     const especialistas$ = this.turnoService.getEspecialistas();
     this.authService.getLoggedUser().subscribe((user) => {
@@ -41,7 +42,7 @@ export class HomePacienteComponent {
           .filter((turno: any) => turno.uidPaciente === usuarioLogueado?.uid)
           .map((turno: any) => {
             const especialista = especialistas.find((e: any) => e.uid === turno.uidEspecialista);
-    
+
             return {
               ...turno,
               nombreEspecialista: especialista ? `${especialista.apellido}, ${especialista.nombre}` : 'Especialista no encontrado',
@@ -49,43 +50,47 @@ export class HomePacienteComponent {
           });
       })
     ).subscribe((turnosDetallado) => {
-      this.turnosDetallado = turnosDetallado;
+      this.turnosDetallado = this.ordenarPorFecha(turnosDetallado);
       this.turnosFiltrado = this.turnosDetallado;
       this.isLoading = false;
     });
-    
+
 
     this.formSubscription = this.filtroForm.valueChanges.subscribe((filtro) => {
       this.turnosFiltrado = this.filtrarTurnos(this.turnosDetallado, filtro);
     });
   }
 
+  ordenarPorFecha(turnosConFecha: any[]): any[] {
+    turnosConFecha.sort((a, b) => {
+      const dateA = this.convertirAFecha(a.fecha);
+      const dateB = this.convertirAFecha(b.fecha);
+
+      return dateA.getTime() - dateB.getTime();
+    });
+
+    return turnosConFecha;
+  }
+  private convertirAFecha(fechaString: string): Date {
+    const partesFecha = fechaString.split('/');
+    const fecha = new Date(
+      parseInt(partesFecha[2]),
+      parseInt(partesFecha[1]) - 1,
+      parseInt(partesFecha[0])
+    );
+    return fecha;
+  }
+
   filtrarTurnos(turnos: any[], filtro: any): any[] {
 
-    if (!turnos || typeof filtro.especialidad !== 'string') {
-      return [];
-    }
-
-    return turnos.filter((turno) => {
-      const especialidadCumple = (
-        typeof turno.especialidad === 'string' &&
-        turno.especialidad.toLowerCase().includes(filtro.especialidad?.toLowerCase())
-      );
-
-      const especialistaCumple = (
-        typeof turno.nombreEspecialista === 'string' &&
-        turno.nombreEspecialista.toLowerCase().includes(filtro.especialista?.toLowerCase())
-      );
-
-      return especialidadCumple && especialistaCumple;
-    });
+    return this.turnoService.filtrarTurnos(turnos, filtro)
   }
 
   getColorPorEstado(estado: string): string {
     switch (estado) {
       case 'confirmado':
         return 'badge rounded-pill text-bg-success';
-        case 'finalizado':
+      case 'finalizado':
         return 'badge rounded-pill text-bg-warning';
       case 'cancelado':
         return 'badge rounded-pill text-bg-danger';
@@ -95,7 +100,7 @@ export class HomePacienteComponent {
         return 'badge rounded-pill text-bg-secondary';
 
       default:
-        return 'badge rounded-pill text-bg-muted'; // Clase de Bootstrap para texto gris por defecto
+        return 'badge rounded-pill text-bg-muted';
     }
   }
   cancelarTurno(turno: any) {
@@ -109,18 +114,17 @@ export class HomePacienteComponent {
       showLoaderOnConfirm: true,
       preConfirm: async (motivo) => {
         console.log(turno.id, motivo)
-        this.turnoService.cancelarTurno(turno.id,motivo)
+        this.turnoService.cancelarTurno(turno.id, motivo)
       },
       allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {
       if (result.isConfirmed) {
-        // El usuario confirmó la cancelación
         Swal.fire('Cancelado', 'La acción fue cancelada.', 'success');
       }
     });
   }
 
-  calificarTurno(turno: any){
+  calificarTurno(turno: any) {
     Swal.fire({
       title: 'Calificar atención',
       input: 'text',
@@ -134,7 +138,7 @@ export class HomePacienteComponent {
         const calificacion = (document.getElementById('calificacion') as HTMLInputElement).value;
         console.log(turno.id, motivo, calificacion)
 
-        this.turnoService.calificarTurno(turno.id,motivo,calificacion)
+        this.turnoService.calificarTurno(turno.id, motivo, calificacion)
       },
       allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {
@@ -145,11 +149,59 @@ export class HomePacienteComponent {
   }
 
   verComentariosTurno(turno: any) {
+    console.log(turno)
     let htmlContent = `
       <p><strong>Comentarios:</strong> ${turno.comentarios}</p>
       
     `;
-  
+
+    if (turno.datosFijos) {
+      if (turno.datosFijos.altura !== "") {
+        htmlContent += `
+          <p><strong>Altura:</strong> ${turno.datosFijos.altura}</p>
+          `;
+      }
+      if (turno.datosFijos.peso !== "") {
+        htmlContent += `
+          <p><strong>Peso:</strong> ${turno.datosFijos.peso}</p>
+          `;
+      }
+      if (turno.datosFijos.presion !== "") {
+        htmlContent += `
+          <p><strong>Presion:</strong> ${turno.datosFijos.presion}</p>
+          `;
+      }
+      if (turno.datosFijos.temperatura !== "") {
+        htmlContent += `
+          <p><strong>Temperatura:</strong> ${turno.datosFijos.temperatura}</p>
+          `;
+      }
+      if (turno.datosFijos.diagnostico !== "") {
+        htmlContent += `
+          <p><strong>Diagnostico:</strong> ${turno.datosFijos.diagnostico}</p>
+          `;
+      }
+    }
+
+    if (turno.datosDinamicos) {
+      if (turno.datosDinamicos.dato1.nombre !== "") {
+        htmlContent += `
+          <p><strong>${turno.datosDinamicos.dato1.nombre}:</strong> ${turno.datosDinamicos.dato1.valor}</p>
+          `;
+      }
+      if (turno.datosDinamicos.dato2.nombre !== "") {
+        htmlContent += `
+          <p><strong>${turno.datosDinamicos.dato2.nombre}:</strong> ${turno.datosDinamicos.dato2.valor}</p>
+          `;
+      }
+      if (turno.datosDinamicos.dato3.nombre !== "") {
+        htmlContent += `
+          <p><strong>${turno.datosDinamicos.dato3.nombre}:</strong> ${turno.datosDinamicos.dato3.valor}</p>
+          `;
+      }
+    }
+
+
     if (turno.resenia !== "") {
       htmlContent += `
       <p><strong>Reseña:</strong> ${turno.resenia}</p>
@@ -162,7 +214,7 @@ export class HomePacienteComponent {
         <input type="range" id="calificacion" name="calificacion" min="1" max="5" value="${turno.calificacion}" disabled>
       `;
     }
-  
+
     Swal.fire({
       title: 'Comentarios',
       html: htmlContent,
@@ -170,6 +222,6 @@ export class HomePacienteComponent {
       allowOutsideClick: () => !Swal.isLoading(),
     });
   }
-  
-  
+
+
 }

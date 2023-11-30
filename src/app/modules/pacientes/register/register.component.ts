@@ -7,11 +7,14 @@ import { DataqueryService } from 'src/app/services/dataquery.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { fechaNacimientoValidator } from 'src/app/validators/fechaNacimiento.validators';
 import { RecaptchaService } from 'src/app/services/recaptcha.service';
+import { trigger, state, style, animate, transition} from '@angular/animations';
+import { fadeInUpAnimation } from 'src/app/components/animaciones/animaciones.animation';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  animations: [fadeInUpAnimation]
 })
 export class RegisterComponent implements OnInit {
 

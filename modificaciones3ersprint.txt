@@ -1,0 +1,14 @@
+Preguntar a que se refiere 
+● Máximo tres datos dinámicos. Ingresando clave y valor.
+○ Por ejemplo:
+■ clave: caries
+valor: 4
+
+Al finalizar la atencion ademas de dar una reseña tiene que cargar todo eso? 
+
+Grupo 2 Sp2
+"* Sacar un turno
+- Comienza mostrando los PROFESIONALES en botones rectangulares con la imagen del mismo y su nombre por debajo del botón
+- Una vez seleccionado mostrará las ESPECIALIDADES, en botones redondos, con la imagen de la especialidad. En caso de no tener muestra imagen por default
+
+- Una vez seleccionada la especialidad, aparecerán los días y horarios con turnos disponibles para ese PROFESIONAL. Estos botones deben ser cuadrados con bordes redondeados. Formato (DD-MM hh:mm)

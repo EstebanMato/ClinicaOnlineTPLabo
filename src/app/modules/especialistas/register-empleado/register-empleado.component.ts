@@ -7,11 +7,14 @@ import { RecaptchaService } from 'src/app/services/recaptcha.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { fechaNacimientoValidator } from 'src/app/validators/fechaNacimiento.validators';
 import Swal from 'sweetalert2';
+import { trigger, state, style, animate, transition} from '@angular/animations';
+import { fadeInUpAnimation } from 'src/app/components/animaciones/animaciones.animation';
 
 @Component({
   selector: 'app-register-empleado',
   templateUrl: './register-empleado.component.html',
-  styleUrls: ['./register-empleado.component.css']
+  styleUrls: ['./register-empleado.component.css'],
+  animations: [fadeInUpAnimation]
 })
 export class RegisterEmpleadoComponent implements OnInit {
 
