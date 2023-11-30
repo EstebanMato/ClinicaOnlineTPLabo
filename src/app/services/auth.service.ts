@@ -58,7 +58,7 @@ export class AuthService {
     const col = collection(this.firestore, 'usuarios');
     addDoc(col, {
       nombre: nombre, apellido: apellido, dni: dni, fechaNacimiento: fechaNacimiento, mail: mail, password: password, uid: uid,
-      especialidad: especialidad, imagen: imagen, perfil: "especialista", estado: false, horaInicio: "00:00", horaFin: "00:00", diasAtencion: ""
+      especialidad: especialidad, imagen: imagen, perfil: "especialista", estado: false, horaInicio: "00:00", horaFin: "00:00", diasAtencion: ['Lunes','Martes']
     });
   }
 
