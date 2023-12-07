@@ -7,20 +7,6 @@ import { ExcelService } from 'src/app/services/excel.service';
 import { fadeInUpAnimation } from 'src/app/components/animaciones/animaciones.animation';
 
 
-const ELEMENT_DATA:  any[] = [
-  { nombre: 'Juan', apellido: 'García', edad: 25, pais: 'Argentina' },
-  { nombre: 'María', apellido: 'López', edad: 30, pais: 'España' },
-  { nombre: 'Carlos', apellido: 'Martínez', edad: 28, pais: 'México' },
-  { nombre: 'Ana', apellido: 'Fernández', edad: 22, pais: 'Colombia' },
-  { nombre: 'Pedro', apellido: 'Díaz', edad: 35, pais: 'Chile' },
-  { nombre: 'Laura', apellido: 'Ramírez', edad: 27, pais: 'Perú' },
-  { nombre: 'Sofía', apellido: 'Gómez', edad: 29, pais: 'Uruguay' },
-  { nombre: 'Diego', apellido: 'Hernández', edad: 31, pais: 'Brasil' },
-  { nombre: 'Valentina', apellido: 'Pérez', edad: 26, pais: 'Ecuador' },
-  { nombre: 'Lucas', apellido: 'Suárez', edad: 24, pais: 'Paraguay' }
-];
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

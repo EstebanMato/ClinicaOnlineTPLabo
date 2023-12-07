@@ -1,0 +1,43 @@
+
+<div class="container container-informes" >
+    <select  class="form-select form-select-sm" aria-label=".form-select-sm example" style="max-width: 300px;" [(ngModel)]="opcionSeleccionada">
+        <option value="" disabled selected>Seleccione un informe</option>
+        <option value="logs-usuarios">Logs de ingreso al sistema</option>
+        <option value="turnos-especialidad">Cantidad de turnos por especialidad</option>
+        <option value="turnos-dia">Cantidad de turnos por día</option>
+        <option value="turnos-medico">Cantidad de turnos por médico</option>
+        <option value="turnos-medico-finalizados">Cantidad de turnos finalizados por médico</option>
+    </select>
+    <div class="contenedorChart">
+        <div>
+            <ng-container *ngIf="this.opcionSeleccionada == ''">
+                <h3>Selecciona un informe a mostrar</h3>
+            </ng-container>
+        </div>
+        <div>
+            <ng-container *ngIf="this.opcionSeleccionada === 'logs-usuarios'">
+                <app-logs-usuarios></app-logs-usuarios>
+            </ng-container>
+        </div>
+        <div>
+            <ng-container *ngIf="this.opcionSeleccionada === 'turnos-especialidad'">
+                <app-turnos-especialidad></app-turnos-especialidad>
+            </ng-container>
+        </div>
+        <div>
+            <ng-container *ngIf="this.opcionSeleccionada === 'turnos-dia'">
+                <app-turnos-dia></app-turnos-dia>
+            </ng-container>
+        </div>
+        <div>
+            <ng-container *ngIf="this.opcionSeleccionada === 'turnos-medico'">
+                <app-turnos-medico></app-turnos-medico>
+            </ng-container>
+        </div>
+        <div>
+            <ng-container *ngIf="this.opcionSeleccionada === 'turnos-medico-finalizados'">
+                <app-turnos-medico-finalizados></app-turnos-medico-finalizados>
+            </ng-container>
+        </div>
+    </div>
+</div>

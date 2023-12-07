@@ -23,6 +23,11 @@ const routes: Routes = [{path :"", redirectTo: '/login', pathMatch: 'full',},
     .then(mod => mod.PerfilAdminModule), canActivate: [RolGuard]
 },
 {
+  path: 'informes',
+  loadChildren: () => import('./modules/admin/informes/informes.module')
+    .then(mod => mod.InformesModule), canActivate: [RolGuard]
+},
+{
   path: 'home/especialista',
   loadChildren: () => import('./modules/especialistas/home-especialistas/home-especialistas.module')
     .then(mod => mod.HomeEspecialistasModule) ,canActivate: [rolEspecialistaGuard]

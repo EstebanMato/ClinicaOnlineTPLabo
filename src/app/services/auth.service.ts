@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
-import { addDoc, collection, Firestore, query, where, collectionData } from '@angular/fire/firestore'
+import { addDoc, collection, Firestore, query, where, collectionData, serverTimestamp } from '@angular/fire/firestore'
 import { first } from 'rxjs';
 
 @Injectable({
@@ -86,4 +86,16 @@ export class AuthService {
       });
   }
 
+  guardarLog(uid: string){
+    const fechaActual = serverTimestamp();
+    const col =collection(this.firestore, 'logs' );
+    addDoc(col, {uid: uid, fecha:fechaActual});
+  }
+
+  getLogs() {
+    const col = collection(this.firestore, 'logs');
+    const observable = collectionData(col);
+
+    return observable;
+  }
 }

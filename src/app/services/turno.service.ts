@@ -39,6 +39,30 @@ export class TurnoService {
     return observable;
   }
 
+  getTurnosPendientes() {
+    const col = collection(this.firestore, 'turnos');
+    const q = query(col, where("estado", "==", "pendiente"));
+    const observable = collectionData(q);
+
+    return observable;
+  }
+
+  getTurnosFinalizados() {
+    const col = collection(this.firestore, 'turnos');
+    const q = query(col, where("estado", "==", "finalizado"));
+    const observable = collectionData(q);
+
+    return observable;
+  }
+
+  getTurnosActivos() {
+    const col = collection(this.firestore, 'turnos');
+    const q = query(col, where("estado", "!=", "cancelado"));
+    const observable = collectionData(q);
+
+    return observable;
+  }
+
   async crearTurno(turno: any) {
     const proximoId= await this.getProxIdTurno();
     const col = collection(this.firestore, 'turnos');

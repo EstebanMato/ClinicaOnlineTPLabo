@@ -1,0 +1,26 @@
+<div class="overlay" *ngIf="isLoading">
+    <div class="spinner"></div>
+</div>
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Día</th>
+                <th scope="col">Hora</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let log of logsConUsuarioInfo">
+                <td>{{ log.nombre }}</td>
+                <td>{{ log.apellido }}</td>
+                <td>{{ log.dia }}</td>
+                <td>{{ log.horario }} hs</td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <button type="button" class="btn btn-success" (click)="descargarExcel()">Descargar excel</button>
+    </div>
+</div>

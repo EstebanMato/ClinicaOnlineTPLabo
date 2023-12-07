@@ -53,6 +53,8 @@ export class LoginComponent implements OnInit {
             text: 'El usuario no se encuentra verificado, favor de revisar el correo',
           });
         } else {
+          this.authService.guardarLog(user[0]['uid'])
+
           switch (user[0]['perfil']) {
             case 'especialista':
               this.router.navigate(['/home/especialista']);
@@ -101,10 +103,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  async accesoRapido(email: string, password: string, ruta: string) {
+  async accesoRapido(email: string, password: string, ruta: string, uid: string) {
     this.isLoading = true;
     await this.authService.ingresar(email, password);
-    await this.router.navigate([ruta]).then(() => this.isLoading = false)
+    await this.router.navigate([ruta]).then(() => {this.isLoading = false; this.authService.guardarLog(uid)})
+
   }
 
   ngOnInit(): void {

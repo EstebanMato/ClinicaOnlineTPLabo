@@ -1,0 +1,27 @@
+<div class="overlay" *ngIf="isLoading">
+    <div class="spinner"></div>
+</div>
+<div class="container">
+    <div class="calendar-container d-flex">
+        <div class="mb-3">
+            <label>Desde</label>
+            <input type="date" class="form-control" id="fechaInicio" [(ngModel)]="fechaInicioAux">
+        </div>
+        <div class="mb-3">
+            <label>Hasta</label>
+            <input type="date" class="form-control" id="fechaFin" [(ngModel)]="fechaFinAux">
+        </div>
+    </div>
+    <button (click)="buscar()" type="button" class="btn btn-secondary">Filtrar</button>
+        <div id="contenedorChart">
+            <canvas id="turnosMedicoFinalizados" width="400" height="200"></canvas>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <button type="button" class="btn btn-success" (click)="descargarExcel()">Descargar excel</button>
+            </div>
+            <div>
+                <button type="button" class="btn btn-danger" (click)="imprimirPantalla()">Descargar PDF</button>
+            </div>
+        </div>
+</div>

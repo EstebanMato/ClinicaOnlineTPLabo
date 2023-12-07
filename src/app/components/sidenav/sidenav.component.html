@@ -25,6 +25,13 @@
                 </span>
             </li>
 
+            <li class="nav-list-item" *ngIf="usuarioLogueado && usuarioLogueado[0]?.perfil === 'admin'">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span class="">
+                    <a [routerLink]="'/informes/'">Informes</a>
+                </span>
+            </li>
+
             <li class="nav-list-item" *ngIf="usuarioLogueado && usuarioLogueado[0]?.perfil === 'especialista'">
                 <i class="fa-solid fa-stethoscope"></i>
                 <span class="">
